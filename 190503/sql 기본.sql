@@ -1,5 +1,5 @@
 -- select 기본
-
+-- ss
 select * from departments;
 
 select first_name, gender, hire_date from employees;
