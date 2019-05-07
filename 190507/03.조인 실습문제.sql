@@ -26,13 +26,15 @@ order by a.first_name asc, a.last_name asc;
 
 -- 문제4.
 -- 전체 사원의 사번, 이름, 연봉, 직책, 부서를 모두 이름 순서로 출력합니다.
-select a.emp_no, a.first_name, a.last_name, d.title, c.dept_name
-from employees a, dept_emp b, departments c, titles d
+select a.emp_no, a.first_name, a.last_name, e.salary, d.title, c.dept_name
+from employees a, dept_emp b, departments c, titles d, salaries e
 where a.emp_no = b.emp_no
 and b.dept_no = c.dept_no
 and a.emp_no = d.emp_no
+and a.emp_no = e.emp_no
 and b.to_date = '9999-01-01'
 and d.to_date = '9999-01-01'
+and e.to_date = '9999-01-01'
 order by a.first_name asc, a.last_name asc;
 
 -- 문제5.
@@ -56,13 +58,14 @@ and c.to_date = '9999-01-01';
 
 -- 문제7.
 -- 현재, 직책이 Engineer인 사원 중에서 현재 급여가 40000 이상인 사원을 급여가 큰 순서대로 출력하세요.
-select a.first_name, a.last_name, c.salary
+select a.first_name, a.last_name, b.title, c.salary
 from employees a, titles b, salaries c
 where a.emp_no = b.emp_no
 and b.emp_no = c.emp_no
 and b.to_date = '9999-01-01'
 and c.to_date = '9999-01-01'
 and c.salary >= 40000
+and b.title = 'Engineer'
 order by c.salary desc;
 
 -- 문제8.
