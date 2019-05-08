@@ -60,7 +60,8 @@ from employees a, dept_emp b, departments c,
 where a.emp_no = b.emp_no
 and b.dept_no = c.dept_no
 and d.dept_no = c.dept_no
-and b.to_date = '9999-01-01';
+and b.to_date = '9999-01-01'
+order by a.emp_no asc;
 
 -- 문제5.
 -- 현재, 평균연봉이 가장 높은 부서의 사원들의 사번, 이름, 직책, 연봉을 조회하고 연봉 순으로 출력하세요.
