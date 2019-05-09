@@ -63,6 +63,38 @@ and d.dept_no = c.dept_no
 and b.to_date = '9999-01-01'
 order by a.emp_no asc;
 
+-- 다른방법
+select a.emp_no, a.first_name, a.last_name, e.first_name, e.last_name, c.dept_name
+from employees a, dept_emp b, departments c, dept_manager d, employees e
+where a.emp_no = b.emp_no
+and b.dept_no = c.dept_no
+and d.dept_no = c.dept_no
+and b.to_date = '9999-01-01'
+and b.dept_no = d.dept_no
+and d.emp_no = e.emp_no
+and d.to_date = '9999-01-01';
+
+SELECT 
+    a.emp_no,
+    CONCAT(a.first_name, ' ', a.last_name),
+    CONCAT(d.first_name, ' ', d.last_name),
+    e.dept_name
+FROM
+    employees a,
+    dept_emp b,
+    dept_manager c,
+    employees d,
+    departments e
+WHERE
+    a.emp_no = b.emp_no
+        AND b.dept_no = c.dept_no
+        AND c.emp_no = d.emp_no
+        AND c.dept_no = e.dept_no
+        AND b.to_date = '9999-01-01'
+        AND c.to_date = '9999-01-01';
+
+
+
 -- 문제5.
 -- 현재, 평균연봉이 가장 높은 부서의 사원들의 사번, 이름, 직책, 연봉을 조회하고 연봉 순으로 출력하세요.
 select a.emp_no, a.first_name, a.last_name, b.title, d.salary, c.dept_no
@@ -155,5 +187,5 @@ and a.emp_no = c.emp_no
 and c.dept_no = d.dept_no
 and b.to_date = '9999-01-01'
 and c.to_date = '9999-01-01'
-and b.salary > d.salary
+and b.salary > d.salary;
 
